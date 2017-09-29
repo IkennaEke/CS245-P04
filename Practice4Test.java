@@ -1,4 +1,3 @@
-
 public class Practice4Test {
 	
 	protected Queue queue;
@@ -26,9 +25,11 @@ public class Practice4Test {
 	
 	public boolean isPalindrome(String item) {
 		clearData();
+		item = item.replaceAll(" ", "");
+		item = item.replaceAll("!", "");
 		for (int i = 0; i < item.length(); i++) {
-			stack.push(item.substring(i, i+1));
-			queue.enqueue(item.substring(i, i+1));
+				stack.push(item.substring(i, i+1).toLowerCase().trim());
+				queue.enqueue(item.substring(i, i+1).toLowerCase());
 		}
 
 		while (! stack.empty() && ! queue.empty()) {
@@ -90,7 +91,7 @@ public class Practice4Test {
 				queue.dequeue();
 				stack.pop();
 			}
-			if (queue.empty() && stack.empty() && ! emptiedEarly) {
+			if (stack.empty() && ! emptiedEarly) {
 				System.out.println("[+10%] Stack and Queue appear to resize correctly.");
 				grade += 10;
 			} else {
